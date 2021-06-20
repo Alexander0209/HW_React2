@@ -9,7 +9,7 @@ export const Pagination =  ({pagesNumber, paginate, currentPage}) => {
     for(let i = 0; i < pagesNumber; i++) {
         pageAmount.push(i+1);
     }
-    console.log("got", pageAmount)
+
     return (
         <nav>
             {

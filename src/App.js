@@ -1,5 +1,5 @@
 import './App.css';
-import { PostsListShowMore } from './components/PostsListShowMore';
+//import { PostsListShowMore } from './components/PostsListShowMore';
 import { PostsListPagination } from './components/PostsListPagination';
 
 
