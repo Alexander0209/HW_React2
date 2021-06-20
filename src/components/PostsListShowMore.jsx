@@ -22,6 +22,7 @@ export const PostsListShowMore = () => {
         });
     }
 
+
     React.useEffect(() => {
         onClickShowMoreHandler()
     }, [])
@@ -52,7 +53,4 @@ export const PostsListShowMore = () => {
     )
 }
 
-PostsListShowMore.propTypes = {
-
-}
  

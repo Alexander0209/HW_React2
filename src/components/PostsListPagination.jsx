@@ -8,21 +8,24 @@ export const PostsListPagination = () => {
     const [posts, setPosts] = React.useState([]);
     const [isLoading, setLoading] = React.useState(false);
     const [currentPage, setCurrentPage] = React.useState(1);
+    const [pagesAmount, setPagesAmount] = React.useState(10)
+   
+    const postsPerPage = 10;
 
-    const onClickShowMoreHandler = (pageNum) => {
+    const onClickPageHandler = (pageNum) => {
         setLoading(true);
-        getPosts(pageNum).then(posts => {
-            setPosts(posts);
+        getPosts(pageNum, postsPerPage).then(posts => {
+            posts.posts.then(json => setPosts(json))
             setCurrentPage(pageNum);
+            setPagesAmount(posts.count/postsPerPage);
             setLoading(false);
         });
     }
 
     React.useEffect(() => {
-        onClickShowMoreHandler()
+       onClickPageHandler(1)
     }, [])
 
-    const pagesNumber = 10;
 
     if(isLoading) {
         return (
@@ -45,7 +48,7 @@ export const PostsListPagination = () => {
                     })
                 }
             </ul>
-            <Pagination pagesNumber={pagesNumber} paginate={onClickShowMoreHandler} currentPage={currentPage}/>
+            <Pagination pagesNumber={pagesAmount} paginate={onClickPageHandler} currentPage={currentPage}/>
         </div>
     )
 }
