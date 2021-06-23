@@ -1,20 +1,20 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { getPosts } from '../api/posts'
+import {  getMorePosts } from '../api/posts'
 import '../css/PostList.css'
+import { Post } from './Post'
 
 export const PostsListShowMore = () => {
 
     const [posts, setPosts] = React.useState([]);
     const [nextPage, setNextPage] = React.useState(1);
-    const [isLoading, setLoading] = React.useState(false)
+    const [isLoading, setLoading] = React.useState(false);
 
-    const isDisabled = ((nextPage >= 11) ? true : false) || isLoading ;
+    const isDisabled = ((nextPage >= 11) ? true : false) || isLoading;
     
     const onClickShowMoreHandler = () => {
         setLoading(true);
         const prevPage = [...posts];
-        getPosts(nextPage).then(posts => {
+        getMorePosts(nextPage).then(posts => {
             const lastPage = posts[posts.length-1].userId;
             setPosts([...prevPage, ...posts]);
             setNextPage(lastPage+1);
@@ -22,9 +22,8 @@ export const PostsListShowMore = () => {
         });
     }
 
-
     React.useEffect(() => {
-        onClickShowMoreHandler()
+        onClickShowMoreHandler(1)
     }, [])
 
     if(isLoading && !posts.length) {
@@ -40,10 +39,7 @@ export const PostsListShowMore = () => {
                 {
                     posts.map(posts => {
                         return (
-                            <li key={posts.id}>
-                                <h3> №{posts.id} {posts.title}</h3>
-                                <p>{posts.body}</p>
-                            </li>
+                            <Post posts={posts} key={posts.id}/>
                         )                        
                     })
                 }

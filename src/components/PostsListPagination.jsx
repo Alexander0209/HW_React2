@@ -2,6 +2,7 @@ import React from 'react'
 import '../css/PostList.css'
 import { getPosts } from '../api/posts'
 import { Pagination } from './Pagination'
+import { Post } from './Post'
 
 export const PostsListPagination = () => {
 
@@ -40,10 +41,7 @@ export const PostsListPagination = () => {
                 {
                     posts.map(posts => {
                         return (
-                            <li key={posts.id}>
-                                <h3> №{posts.id} {posts.title}</h3>
-                                <p>{posts.body}</p>
-                            </li>
+                            <Post posts={posts} key={posts.id}/>
                         )                        
                     })
                 }

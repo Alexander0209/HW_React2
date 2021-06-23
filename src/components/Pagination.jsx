@@ -1,14 +1,11 @@
 import React from 'react'
 import '../css/PostList.css'
+import PropTypes from 'prop-types' 
 
 
 export const Pagination =  ({pagesNumber, paginate, currentPage}) => {
-    
-    const pageAmount = [];
 
-    for(let i = 0; i < pagesNumber; i++) {
-        pageAmount.push(i+1);
-    }
+    const pageAmount = new Array(pagesNumber).fill().map((el, index) => index+1)
 
     return (
         <nav>
@@ -21,4 +18,10 @@ export const Pagination =  ({pagesNumber, paginate, currentPage}) => {
             }
         </nav>
     )
+}
+
+Pagination.propTypes = {
+    pagesNumber: PropTypes.number.isRequired,
+    paginate: PropTypes.func.isRequired,
+    currentPage: PropTypes.number.isRequired,
 }

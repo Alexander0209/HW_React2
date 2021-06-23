@@ -1,14 +1,14 @@
 import './App.css';
-//import { PostsListShowMore } from './components/PostsListShowMore';
-import { PostsListPagination } from './components/PostsListPagination';
+import { PostsListShowMore } from './components/PostsListShowMore';
+// import { PostsListPagination } from './components/PostsListPagination';
 
 
 function App() {
   return (
     <div className="App">
-      <PostsListPagination />
+      {/* <PostsListPagination /> */}
 
-      {/*<PostsListShowMore />*/}
+      <PostsListShowMore />
     </div>
   );
 }
