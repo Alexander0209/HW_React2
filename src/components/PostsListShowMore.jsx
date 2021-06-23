@@ -13,10 +13,9 @@ export const PostsListShowMore = () => {
     
     const onClickShowMoreHandler = () => {
         setLoading(true);
-        const prevPage = [...posts];
         getMorePosts(nextPage).then(posts => {
             const lastPage = posts[posts.length-1].userId;
-            setPosts([...prevPage, ...posts]);
+            setPosts((prevPage) => [...prevPage, ...posts]);
             setNextPage(lastPage+1);
             setLoading(false);
         });
